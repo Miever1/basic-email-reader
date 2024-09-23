@@ -1,8 +1,8 @@
 <div>
     <div class="card shadow transparent-card">
         <div class="card-header">
-            <h3 class="d-flex justify-content-center text-primary">
-                Welcome to ARB Email System
+            <h3 class="d-flex justify-content-center text-primary mt-16">
+                Welcome to A-B Email System
             </h3>
             <div class="card-body">
             <form
@@ -49,7 +49,10 @@
                         name="to"
                         type="text"
                         #sto="ngModel"
-                        class="form-control {{ sto.valid ? 'is-valid' : 'is-invalid'}}"
+                        class="
+                            form-control 
+                            {{ emailData.to === '' ? (isSubmitd ? 'is-invalid' : '') : (sto.valid ? 'is-valid' : 'is-invalid') }}
+                        "
                         [(ngModel)]="emailData.to"
                         pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                     />
@@ -73,7 +76,10 @@
                         name="subject"
                         type="text"
                         #ssubject="ngModel"
-                        class="form-control {{ ssubject.valid ? 'is-valid' : 'is-invalid'}}"
+                        class="
+                            form-control
+                            {{ emailData.subject === '' ? (isSubmitd ? 'is-invalid' : '') : (ssubject.valid ? 'is-valid' : 'is-invalid') }}
+                        "
                         [(ngModel)]="emailData.subject"
                         pattern="^.{10,50}$"
                     />
@@ -102,7 +108,7 @@
               </div>
               <div class="col-12">  
                 <button
-                    class="btn btn-primary"
+                    class="btn btn-primary mr-8"
                     type="submit"
                     [disabled]="!(sfrom.valid && sto.valid && ssubject.valid)"
                 >
@@ -116,9 +122,9 @@
             </div>
         </div>
     </div>
-    <div class="card shadow transparent-card">
-        <h4 class="d-flex justify-content-center text-primary">
-            Sent histroy
+    <div class="card shadow transparent-card mt-16">
+        <h4 class="d-flex justify-content-center text-primary mt-8">
+            Sent history
         </h4>
         <table
             class="table table-light"
@@ -141,11 +147,16 @@
               </tr>
             </tbody>
         </table>
-        <div class="d-flex  justify-content-center">
-            <div class="no-data" *ngIf="emailDataList.length === 0">
+        <div class="col-12 d-flex justify-content-end mb-16" *ngIf="emailDataList.length !== 0">  
+            <button class="btn btn-primary" (click)="onResetTable()" type="button">
+                Reset histories
+            </button>
+        </div>
+        <div class="d-flex justify-content-center align-items-center">
+            <div class="no-data text-secondary mb-16" *ngIf="emailDataList.length === 0">
                 <i class="fa fa-info-circle"></i>
                 <span>
-                    There is no sent histroy!
+                    There is no sent history!
                 </span>
             </div>
         </div>

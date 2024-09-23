@@ -37,7 +37,7 @@ export class EmailReaderFormComponent {
     window.alert(`The email ${this.emailData.subject} has been sent to ${this.emailData.to}`);
     this.emailDataList = [...this.emailDataList, { ...this.emailData}];
     this.onResetForm();
-    console.log(this.emailDataList)
+    this.isSubmitd = false;
   }
 
   onResetForm() {
@@ -52,6 +52,5 @@ export class EmailReaderFormComponent {
   onResetTable() {
     this.onResetForm();
     this.emailDataList = [];
-  }
-  
+  }  
 }
