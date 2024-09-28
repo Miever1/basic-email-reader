@@ -1,3 +1,66 @@
-h3 {
-  margin: 0;
+.app-root {
+  height: 100%;
+  display: flex;  
+  flex-direction: column;  
+}
+
+.sidebar > .list-group > :first-child {
+  border-radius: 0;
+}
+
+.list-group-item {
+  overflow: hidden; 
+  white-space: nowrap;
+  text-overflow: ellipsis; 
+  display: flex; 
+  align-items: center;
+  border: none;
+  background-color: var(--bs-dark-rgb);
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.list-group-item.active {
+  background: rgb(var(--bs-secondary-rgb));
+}
+
+.list-group-item:hover {
+  background: rgb(var(--bs-secondary-rgb));
+  border-radius: 4px;
+}
+
+.list-group-item > span {
+  color: #fff;
+}
+
+.menu-icon {
+  font-size: 20px;
+}
+
+.main-content {
+  margin: 0 auto;
+  min-width: 760px;
+  padding: 20px;
+  display: flex; 
+  flex-direction: column; 
+  align-items: stretch; 
+  justify-content: space-between; 
+  height: calc(100vh - 40px); 
+}
+
+.main-content-card {
+  flex: 1; 
+  margin: 60px; 
+  border-radius: 8px; 
+  padding: 20px; 
+  transition: box-shadow 0.3s ease; 
+}
+
+.search-input {
+  width: 200px; 
+  margin-left: 20px; 
+}
+
+.card-header {
+  margin: 8px;
 }

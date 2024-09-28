@@ -1,0 +1,42 @@
+<div>
+  <p-table [value]="filteredEmailDataList" scrollable="true" scrollHeight="400px" styleClass="email-table" [resizableColumns]="true">
+    <ng-template pTemplate="header">
+      <tr>
+        <th *ngFor="let col of columns">{{ col.header }}</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-email>
+      <tr>
+        <td *ngFor="let col of columns">
+          <ng-container *ngIf="col.field !== 'actions'; else actionColumn">
+            {{ col.field === 'body' ? truncateText(email[col.field], 50) : email[col.field] }}
+          </ng-container>
+          <ng-template #actionColumn>
+            <div class="button-group">
+              <button (click)="openDetailPage(email)" class="btn btn-primary btn-sm">View</button>
+              <button (click)="deleteEmail(email)" class="btn btn-danger btn-sm mx-2">Delete</button>
+            </div>
+          </ng-template>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+  
+  <p-sidebar
+      [visible]="detailPageVisible"
+      [baseZIndex]="1000"
+      [showCloseIcon]="true"
+      position="left"
+      styleClass="bg-dark detail-page"
+      (onHide)="closeDetailPage()"
+    >
+      <h3>Email Details</h3>
+      <div *ngIf="selectedEmail">
+        <p><strong>From:</strong> {{ selectedEmail.from }}</p>
+        <p><strong>To:</strong> {{ selectedEmail.to }}</p>
+        <p><strong>Subject:</strong> {{ selectedEmail.subject }}</p>
+        <p><strong>Body:</strong> {{ selectedEmail.body }}</p>
+      </div>
+      <button (click)="closeDetailPage()" class="btn btn-secondary">Close</button>
+    </p-sidebar>
+</div>

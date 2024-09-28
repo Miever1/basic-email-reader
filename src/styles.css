@@ -5,4 +5,39 @@ body {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    height: 100%;
+}
+
+html {
+    height: 100%;
+}
+
+h4 {
+    margin: 0;
+}
+
+.toolbar {
+    position: fixed !important; 
+    width: 100%;
+    border-radius: 0;
+ }
+
+.sidebar {
+    width: 84px;
+    transition: width 0.3s ease; 
+    top: 48px;
+    position: fixed;
+    border: none;
+}
+
+.sidebar:hover {
+    width: 200px !important; 
+}
+
+.p-sidebar-mask {
+    display: none !important; 
+}
+
+.detail-page {
+    width: 500px;
 }

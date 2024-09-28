@@ -1,14 +1,85 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { EmailReaderFormComponent  } from './email-reader-form/email-reader-form.component';
+import { RouterModule } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { EmailComposeModalComponent } from './email-compose-modal/email-compose-modal.component';
+import { SentListComponent } from './sent-list/sent-list.component';  
+import { CardModule } from 'primeng/card';
+import { ToolbarModule } from 'primeng/toolbar';
+import { SidebarModule } from 'primeng/sidebar';
+import { NgClass, NgFor, NgIf } from '@angular/common';
+import { FormsModule } from '@angular/forms';  
+import { ToastModule } from 'primeng/toast';
+import { Email } from '../interfaces/Email';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet, EmailReaderFormComponent],
+  standalone: true,  
+  imports: [
+    SentListComponent,  
+    EmailComposeModalComponent,
+    CardModule,
+    ToolbarModule,
+    SidebarModule,
+    NgClass,
+    NgFor,
+    NgIf,
+    FormsModule,
+    RouterModule,
+    ToastModule
+  ], 
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'EmailReader';
+  emailDataList: Email[] = [
+    {
+      id: "id-1",
+      from: 'guillermo.roman@upm.es',
+      to: 'aerman.h@alumnos.upm.es',
+      subject: 'Welcome and first lecture',
+      body: 'First of all, welcome to the course Programming of User Interfaces. According to the schedule, the first lecture will take place on Thursday 12th September at 12:00 in classroom 6205.'
+    },
+    {
+      id: "id-2",
+      from: 'guillermo.roman@upm.es',
+      to: 'aerman.h@alumnos.upm.es',
+      subject: 'Some Angular/Typescript differences',
+      body: 'It seems that there are small differences in the most recent versions of Typescript/Angular and there are some minor changes with respect to the code of the repository of examples:'
+    },
+    {
+      id: "id-3",
+      from: 'admision-noreply@upm.es',
+      to: 'aerman.h@alumnos.upm.es',
+      subject: 'Notificación de admisión en la UPM',
+      body: 'Attached to this email you can find the official admission letter signed by the UPM.'
+    },
+  ];
+
+  searchValue = '';  
+
+  sidebarItems = [
+    {
+      label: 'Inbox',
+      icon: 'fa-solid fa-envelope menu-icon',
+      action: () => { },
+      active: false
+    },
+    {
+      label: 'Sent',
+      icon: 'fa-regular fa-paper-plane menu-icon',
+      action: () => { },
+      active: true
+    }
+  ];
+
+  constructor(private modalService: NgbModal) {}
+
+  openModal() {
+    const modalRef = this.modalService.open(EmailComposeModalComponent);
+    
+    modalRef.componentInstance.emailSent.subscribe((email: Email) => {
+      this.emailDataList = [...this.emailDataList, email];
+      console.log('New email:', this.emailDataList);
+    });
+  }
 }
