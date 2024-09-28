@@ -1,7 +1,42 @@
-<div class="container mt-5 main-background">
-  <div class="row justify-content-center align-items-center">
-    <div class="col-md-16 col-lg-6">
-      <app-email-reader-form />
+<div style="height: 100%;">
+  <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
+    <div class="container">
+      <span>
+        <a class="navbar-brand" href="#">A-mail</a>
+      </span>
+    </div>
+  </nav>
+  <div class="sidebar">
+    <ul class="list-group">
+      <li class="list-group-item" (click)="openModal()">
+        <span>
+          <i class="fa-solid fa-feather menu-icon"></i>
+        </span>
+        <span class="px-3 text-white">Compose</span>
+      </li>
+      <li class="list-group-item mt-5">
+        <span>
+          <i class="fa-solid fa-envelope menu-icon"></i>
+        </span>
+        <span class="px-3 text-white">Inbox</span>
+      </li>
+      <li class="list-group-item">
+        <span>
+          <i class="fa-regular fa-paper-plane menu-icon"></i>
+        </span>
+        <span class="px-3 text-white">Sent</span>
+      </li>
+    </ul>
+  
+    
+  </div>
+  <div class="container main-content">
+    <div class="card text-bg-secondary main-content-card">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      </div>
     </div>
   </div>
+  <app-email-compose-modal id="composeModal"></app-email-compose-modal>
 </div>

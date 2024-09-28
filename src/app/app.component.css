@@ -1,3 +1,67 @@
 h3 {
   margin: 0;
 }
+
+.navbar {
+  position: fixed;
+  width: 100%;
+}
+
+.sidebar {
+  width: 52px;
+  transition: width 0.3s ease;
+  background: rgb(var(--bs-dark-rgb));
+  height: calc(100vh - 47px);
+  position: fixed;
+  top: 48px;
+  z-index: 1020;
+}
+
+.sidebar:hover {
+  width: 200px; 
+}
+
+.sidebar > .list-group > :first-child {
+  background-color: rgb(var(--bs-primary-rgb));
+  border-radius: 0;
+}
+
+.list-group-item {
+  overflow: hidden; 
+  white-space: nowrap;
+  text-overflow: ellipsis; 
+  display: flex; 
+  align-items: center;
+  border: none;
+  background-color: var(--bs-dark-rgb);
+  cursor: pointer;
+}
+
+.list-group-item:hover {
+  background: rgba(var(--bs-primary-rgb), var(--bs-bg-opacity));
+  border-radius: 4px;
+}
+
+.list-group-item > span {
+  color: #fff;
+}
+
+.menu-icon {
+  font-size: 20px;
+}
+
+.main-content {
+  height: calc(100% - 72px);
+  display: flex;
+  align-items: center;
+  margin-left: 260px; 
+  min-width: 800px; 
+  overflow: hidden; 
+}
+
+.main-content-card {
+  width: 100%; 
+  height: calc(100vh - 180px);
+  max-width: 700px; 
+  overflow-y: auto; 
+}

@@ -1,128 +1,5 @@
 <div>
-    <div class="card shadow transparent-card">
-        <div class="card-header">
-            <h3 class="d-flex justify-content-center text-primary mt-16">
-                Welcome to A-B Email System
-            </h3>
-            <div class="card-body">
-            <form
-                (ngSubmit)="onSubmit()"
-            >
-              <div class="mb-3">
-                <div>
-                    <label
-                        for="from"
-                        class="col-form-label"
-                    >
-                        From
-                    </label>
-                    <input
-                        required
-                        id="from"
-                        name="from"
-                        type="text"
-                        #sfrom="ngModel"
-                        class="
-                            form-control 
-                            {{ emailData.from === '' ? (isSubmitd ? 'is-invalid' : '') : (sfrom.valid ? 'is-valid' : 'is-invalid') }}
-                        "
-                        [(ngModel)]="emailData.from"
-                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-                    />
-                    <div
-                        *ngIf="!sfrom.valid"
-                        class="{{ sfrom.valid ? 'invalid-feedback' : 'invalid-feedback'}}"
-                    >
-                        {{ emailData.from === '' ? (isSubmitd ? "Email address is required" : "") : 'Please input the correct e-mail address!' }}
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label
-                        for="to"
-                        class="col-form-label"
-                    >
-                        To
-                    </label>
-                    <input
-                        required
-                        id="to"
-                        name="to"
-                        type="text"
-                        #sto="ngModel"
-                        class="
-                            form-control 
-                            {{ emailData.to === '' ? (isSubmitd ? 'is-invalid' : '') : (sto.valid ? 'is-valid' : 'is-invalid') }}
-                        "
-                        [(ngModel)]="emailData.to"
-                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-                    />
-                    <div
-                        *ngIf="!sto.valid"
-                        class="{{ sto.valid ? 'invalid-feedback' : 'invalid-feedback'}}"
-                    >
-                        {{ emailData.to === '' ? ' Email address is required' : 'Please input the correct e-mail address!' }}
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label
-                        for="subject"
-                        class="col-form-label"
-                    >
-                        Subject
-                    </label>
-                    <input
-                        required
-                        id="subject"
-                        name="subject"
-                        type="text"
-                        #ssubject="ngModel"
-                        class="
-                            form-control
-                            {{ emailData.subject === '' ? (isSubmitd ? 'is-invalid' : '') : (ssubject.valid ? 'is-valid' : 'is-invalid') }}
-                        "
-                        [(ngModel)]="emailData.subject"
-                        pattern="^.{10,50}$"
-                    />
-                    <div
-                        *ngIf="!ssubject.valid"
-                        class="{{ ssubject.valid ? 'invalid-feedback' : 'invalid-feedback'}}"
-        
-                    >
-                        {{ emailData.subject === '' ? 'Subject is required' : 'Required with minimum of 10 characters and a maximum length of 50 characters!' }}
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label
-                        for="body"
-                        class="col-form-label"
-                    >
-                        Body
-                    </label>
-                    <textarea
-                        id="body"
-                        name="body"
-                        [(ngModel)]="emailData.body"
-                        class="form-control no-resize"
-                    ></textarea>
-                </div>
-              </div>
-              <div class="col-12">  
-                <button
-                    class="btn btn-primary mr-8"
-                    type="submit"
-                    [disabled]="!(sfrom.valid && sto.valid && ssubject.valid)"
-                >
-                    Submit
-                </button>
-                <button class="btn btn-primary" (click)="onResetForm()" type="button">
-                    Reset
-                </button>
-            </div>
-            </form>
-            </div>
-        </div>
-    </div>
-    <div class="card shadow transparent-card mt-16">
+    <!-- <div class="card shadow transparent-card mt-16">
         <h4 class="d-flex justify-content-center text-primary mt-8">
             Sent history
         </h4>
@@ -160,7 +37,7 @@
                 </span>
             </div>
         </div>
-    </div>
+    </div> -->
 </div>
 
 
