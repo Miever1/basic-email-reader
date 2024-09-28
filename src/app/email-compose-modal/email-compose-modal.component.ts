@@ -55,7 +55,6 @@ export class EmailComposeModalComponent {
     this.onClose();
 
     // this.emailDataList = [...this.emailDataList, { ...this.emailData}];
-    // this.onResetForm();
     // this.isSubmitd = false;
   }
 
@@ -63,12 +62,4 @@ export class EmailComposeModalComponent {
     this.activeModal.dismiss(); 
   }
 
-  onResetForm() {
-    this.emailData = {
-      from: '',
-      to: '',
-      subject: '',
-      body: ''
-    }
-  }
 }

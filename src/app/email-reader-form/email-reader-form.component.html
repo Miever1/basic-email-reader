@@ -1,43 +1,10 @@
 <div>
-    <!-- <div class="card shadow transparent-card mt-16">
+    <div class="card shadow transparent-card mt-16">
         <h4 class="d-flex justify-content-center text-primary mt-8">
             Sent history
         </h4>
-        <table
-            class="table table-light"
-            *ngIf="emailDataList.length !== 0"
-        >
-            <thead>
-              <tr>
-                <th scope="col">From</th>
-                <th scope="col">To</th>
-                <th scope="col">Subject</th>
-                <th scope="col">Body</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let email of emailDataList">
-                <td>{{ email.from }}</td>
-                <td>{{ email.to }}</td>
-                <td>{{ email.subject }}</td>
-                <td>{{ email.body }}</td>
-              </tr>
-            </tbody>
-        </table>
-        <div class="col-12 d-flex justify-content-end mb-16" *ngIf="emailDataList.length !== 0">  
-            <button class="btn btn-primary" (click)="onResetTable()" type="button">
-                Reset histories
-            </button>
-        </div>
-        <div class="d-flex justify-content-center align-items-center">
-            <div class="no-data text-secondary mb-16" *ngIf="emailDataList.length === 0">
-                <i class="fa fa-info-circle"></i>
-                <span>
-                    There is no sent history!
-                </span>
-            </div>
-        </div>
-    </div> -->
+        
+    </div>
 </div>
 
 
