@@ -1,28 +1,10 @@
-h3 {
-  margin: 0;
-}
-
-.navbar {
-  position: fixed;
-  width: 100%;
-}
-
-.sidebar {
-  width: 52px;
-  transition: width 0.3s ease;
-  background: rgb(var(--bs-dark-rgb));
-  height: calc(100vh - 47px);
-  position: fixed;
-  top: 48px;
-  z-index: 1020;
-}
-
-.sidebar:hover {
-  width: 200px; 
+.app-root {
+  height: 100%;
+  display: flex;  
+  flex-direction: column;  
 }
 
 .sidebar > .list-group > :first-child {
-  background-color: rgb(var(--bs-primary-rgb));
   border-radius: 0;
 }
 
@@ -35,10 +17,15 @@ h3 {
   border: none;
   background-color: var(--bs-dark-rgb);
   cursor: pointer;
+  border-radius: 4px;
+}
+
+.list-group-item.active {
+  background: rgb(var(--bs-secondary-rgb));
 }
 
 .list-group-item:hover {
-  background: rgba(var(--bs-primary-rgb), var(--bs-bg-opacity));
+  background: rgb(var(--bs-secondary-rgb));
   border-radius: 4px;
 }
 
@@ -51,17 +38,29 @@ h3 {
 }
 
 .main-content {
-  height: calc(100% - 72px);
-  display: flex;
-  align-items: center;
-  margin-left: 260px; 
-  min-width: 800px; 
-  overflow: hidden; 
+  margin: 0 auto;
+  min-width: 760px;
+  padding: 20px;
+  display: flex; 
+  flex-direction: column; 
+  align-items: stretch; 
+  justify-content: space-between; 
+  height: calc(100vh - 40px); 
 }
 
 .main-content-card {
-  width: 100%; 
-  height: calc(100vh - 180px);
-  max-width: 700px; 
-  overflow-y: auto; 
+  flex: 1; 
+  margin: 60px; 
+  border-radius: 8px; 
+  padding: 20px; 
+  transition: box-shadow 0.3s ease; 
+}
+
+.search-input {
+  width: 200px; 
+  margin-left: 20px; 
+}
+
+.card-header {
+  margin: 8px;
 }

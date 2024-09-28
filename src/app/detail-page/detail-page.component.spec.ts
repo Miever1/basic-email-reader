@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EmailReaderFormComponent } from './email-reader-form.component';
+import { EmailDetailComponent } from './detail-page.component';
 
-describe('EmailReaderFormComponent', () => {
-  let component: EmailReaderFormComponent;
-  let fixture: ComponentFixture<EmailReaderFormComponent>;
+describe('DetailPageComponent', () => {
+  let component: EmailDetailComponent;
+  let fixture: ComponentFixture<EmailDetailComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [EmailReaderFormComponent]
+      imports: [EmailDetailComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(EmailReaderFormComponent);
+    fixture = TestBed.createComponent(EmailDetailComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
