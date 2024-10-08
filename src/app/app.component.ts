@@ -85,7 +85,7 @@ export class AppComponent {
     });
   }
 
-  deleteEmail(emailId: string) {
-    this.emailDataList = this.emailDataList.filter(email => email.id !== emailId);
+  onEmailDeleted(emailId: string) {
+    this.emailDataList = this.emailDataList.filter(email => email.id !== emailId); 
   }
 }

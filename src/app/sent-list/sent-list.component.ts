@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, SimpleChanges, OnInit } from '@angular/core';
+import { Component, Input, Output, OnChanges, SimpleChanges, OnInit, EventEmitter } from '@angular/core';
 import { FormsModule } from '@angular/forms';  
 import { CommonModule } from '@angular/common'; 
 import { CardModule } from 'primeng/card';
@@ -30,6 +30,7 @@ import { EmailDetailComponent } from "../detail-page/detail-page.component";
 export class SentListComponent implements OnChanges, OnInit {
   @Input() emailDataList: Email[] = [];
   @Input() searchTerm: string = '';
+  @Output() emailDeleted = new EventEmitter<string>();
   searchValue: string = '';
   filteredEmailDataList: Email[] = [];
   selectedEmails: Email[] = [];
@@ -52,7 +53,6 @@ export class SentListComponent implements OnChanges, OnInit {
       ...email,
       body: email.body || '' 
     }));
-
     this.filteredEmailDataList = [...this.emailDataList]; 
   }
 
@@ -68,7 +68,6 @@ export class SentListComponent implements OnChanges, OnInit {
 
   filterEmails() {
     const lowerSearchTerm = this.searchValue.toLowerCase();
-
     this.filteredEmailDataList = this.emailDataList.filter(email => {
       if (!email) {
         console.warn('Found undefined email:', email);
@@ -106,26 +105,24 @@ export class SentListComponent implements OnChanges, OnInit {
   }
 
   deleteEmail(email: Email) {
-    this.emailDataList = this.emailDataList.filter(item => item.id !== email.id);
-    this.filterEmails();  
+    this.emailDeleted.emit(email.id); 
     this.messageService.add({
       severity: 'success',
       summary: 'Delete',
-      detail: `Success`,
+      detail: `Email "${email.subject}" has been deleted successfully.`,
       life: 1000
     });
   }
 
   deleteSelectedEmails() {
     this.selectedEmails.forEach(email => {
-      this.emailDataList = this.emailDataList.filter(item => item.id !== email.id);
+      this.emailDeleted.emit(email.id);
     });
-    this.filterEmails();
     this.selectedEmails = []; 
     this.messageService.add({
       severity: 'success',
       summary: 'Delete',
-      detail: `Success`,
+      detail: `Selected emails have been deleted successfully.`,
       life: 1000
     });
   }

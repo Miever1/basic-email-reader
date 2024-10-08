@@ -30,7 +30,11 @@
   </p-sidebar>
   
   <div class="main-content">
-    <app-sent-list [emailDataList]="emailDataList" class="app-sent-list"></app-sent-list>
+    <app-sent-list
+      class="app-sent-list"
+      [emailDataList]="emailDataList"
+      (emailDeleted)="onEmailDeleted($event)">
+    </app-sent-list>
   </div>
   <p-toast></p-toast>
 </div>
