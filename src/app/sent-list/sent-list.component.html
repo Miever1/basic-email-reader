@@ -1,12 +1,56 @@
-<div>
-  <p-table [value]="filteredEmailDataList" scrollable="true" scrollHeight="400px" styleClass="email-table" [resizableColumns]="true">
+<p-card class="main-content-card">
+  <ng-template pTemplate="header">
+    <div class="d-flex justify-content-between align-items-center card-header">
+      <h4 class="px-3">Inbox</h4>
+      <div class="d-flex align-items-center">
+        <button 
+          class="btn btn-danger btn-sm mx-2"
+          (click)="deleteSelectedEmails()"
+          [disabled]="selectedEmails.length === 0"
+        >
+          Delete
+        </button>
+        <input
+          type="text"
+          pInputText 
+          [(ngModel)]="searchValue"
+          (ngModelChange)="filterEmails()"
+          placeholder="Search..."
+        />
+      </div>
+    </div>
+  </ng-template>
+
+  <p-table 
+    [value]="filteredEmailDataList" 
+    scrollable="true" 
+    scrollHeight="400px" 
+    styleClass="email-table" 
+    [resizableColumns]="true"
+    [(selection)]="selectedEmails"
+  >
     <ng-template pTemplate="header">
       <tr>
-        <th *ngFor="let col of columns">{{ col.header }}</th>
+        <th style="width: 4rem"><p-tableHeaderCheckbox /></th>
+        <th *ngFor="let col of columns">
+          {{ col.header }}
+          <ng-container *ngIf="col.field === 'body'">
+            <p-checkbox 
+              [(ngModel)]="showEmptyBodyEmails" 
+              [binary]="true" 
+              (onChange)="filterEmails()" 
+              pTooltip="Hide emails with empty body"
+              tooltipPosition="right"
+              class="ml-2"
+            ></p-checkbox>
+          </ng-container>
+        </th>
       </tr>
     </ng-template>
+
     <ng-template pTemplate="body" let-email>
-      <tr>
+      <tr [pSelectableRow]="email">
+        <td style="width: 4rem"><p-tableCheckbox [value]="email" /></td>
         <td *ngFor="let col of columns">
           <ng-container *ngIf="col.field !== 'actions'; else actionColumn">
             {{ col.field === 'body' ? truncateText(email[col.field], 50) : email[col.field] }}
@@ -21,22 +65,22 @@
       </tr>
     </ng-template>
   </p-table>
-  
+
   <p-sidebar
-      [visible]="detailPageVisible"
-      [baseZIndex]="1000"
-      [showCloseIcon]="true"
-      position="left"
-      styleClass="bg-dark detail-page"
-      (onHide)="closeDetailPage()"
-    >
-      <h3>Email Details</h3>
-      <div *ngIf="selectedEmail">
-        <p><strong>From:</strong> {{ selectedEmail.from }}</p>
-        <p><strong>To:</strong> {{ selectedEmail.to }}</p>
-        <p><strong>Subject:</strong> {{ selectedEmail.subject }}</p>
-        <p><strong>Body:</strong> {{ selectedEmail.body }}</p>
-      </div>
-      <button (click)="closeDetailPage()" class="btn btn-secondary">Close</button>
-    </p-sidebar>
-</div>
+    [visible]="detailPageVisible"
+    [baseZIndex]="1000"
+    [showCloseIcon]="true"
+    position="left"
+    styleClass="bg-dark detail-page"
+    (onHide)="closeDetailPage()"
+  >
+    <h3>Email Details</h3>
+    <div *ngIf="selectedEmail">
+      <p><strong>From:</strong> {{ selectedEmail.from }}</p>
+      <p><strong>To:</strong> {{ selectedEmail.to }}</p>
+      <p><strong>Subject:</strong> {{ selectedEmail.subject }}</p>
+      <p><strong>Body:</strong> {{ selectedEmail.body }}</p>
+    </div>
+    <button (click)="closeDetailPage()" class="btn btn-secondary">Close</button>
+  </p-sidebar>
+</p-card>

@@ -7,7 +7,6 @@ import { CardModule } from 'primeng/card';
 import { ToolbarModule } from 'primeng/toolbar';
 import { SidebarModule } from 'primeng/sidebar';
 import { NgClass, NgFor, NgIf } from '@angular/common';
-import { FormsModule } from '@angular/forms';  
 import { ToastModule } from 'primeng/toast';
 import { Email } from '../interfaces/Email';
 
@@ -23,7 +22,6 @@ import { Email } from '../interfaces/Email';
     NgClass,
     NgFor,
     NgIf,
-    FormsModule,
     RouterModule,
     ToastModule
   ], 
@@ -53,9 +51,14 @@ export class AppComponent {
       subject: 'Notificación de admisión en la UPM',
       body: 'Attached to this email you can find the official admission letter signed by the UPM.'
     },
+    {
+      id: "id-4",
+      from: 'admision-noreply@upm.es',
+      to: 'aerman.h@alumnos.upm.es',
+      subject: 'No body email',
+      body: ''
+    },
   ];
-
-  searchValue = '';  
 
   sidebarItems = [
     {
@@ -79,7 +82,10 @@ export class AppComponent {
     
     modalRef.componentInstance.emailSent.subscribe((email: Email) => {
       this.emailDataList = [...this.emailDataList, email];
-      console.log('New email:', this.emailDataList);
     });
+  }
+
+  deleteEmail(emailId: string) {
+    this.emailDataList = this.emailDataList.filter(email => email.id !== emailId);
   }
 }

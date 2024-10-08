@@ -1,3 +1,16 @@
 .detail-page {
     width: 500px;
 }
+
+.main-content-card {
+    justify-content: center;
+    align-items: center;
+    margin: 60px; 
+    border-radius: 8px; 
+    padding: 20px; 
+    transition: box-shadow 0.3s ease; 
+}
+  
+.card-header {
+    margin: 8px;
+}

@@ -1,1 +1,17 @@
-<p>detail-page works!</p>
+<p-sidebar
+      [visible]="detailPageVisible"
+      [baseZIndex]="1000"
+      [showCloseIcon]="true"
+      position="left"
+      styleClass="bg-dark detail-page"
+      (onHide)="closeDetailPage()"
+    >
+      <h3>Email Details</h3>
+      <div *ngIf="selectedEmail">
+        <p><strong>From:</strong> {{ selectedEmail.from }}</p>
+        <p><strong>To:</strong> {{ selectedEmail.to }}</p>
+        <p><strong>Subject:</strong> {{ selectedEmail.subject }}</p>
+        <p><strong>Body:</strong> {{ selectedEmail.body }}</p>
+      </div>
+      <button (click)="closeDetailPage()" class="btn btn-secondary">Close</button>
+</p-sidebar>

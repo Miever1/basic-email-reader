@@ -21,7 +21,7 @@ export class EmailComposeModalComponent {
 
   constructor(public activeModal: NgbActiveModal, private messageService: MessageService) {
     this.emailData = {
-      id: '',
+      id: `id-${Date.now()}`,
       from: '',
       to: '',
       subject: '',
@@ -32,6 +32,7 @@ export class EmailComposeModalComponent {
   onSubmit() {
     this.isSubmitd = true;
     if (this.emailData.from && this.emailData.to && this.emailData.subject) {
+      console.log(this.emailSent);
       this.emailSent.emit(this.emailData);
       this.showToast(); 
       this.onClose();

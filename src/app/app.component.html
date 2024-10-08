@@ -30,15 +30,7 @@
   </p-sidebar>
   
   <div class="main-content">
-    <p-card class="main-content-card">
-      <ng-template pTemplate="header">
-        <div class="d-flex justify-content-between align-items-center card-header">
-          <h4 class="px-3">Sent List</h4>
-          <input type="text" pInputText [(ngModel)]="searchValue" />
-        </div>
-      </ng-template>
-      <app-sent-list [emailDataList]="emailDataList" [searchTerm]="searchValue"></app-sent-list>
-    </p-card>
+    <app-sent-list [emailDataList]="emailDataList" class="app-sent-list"></app-sent-list>
   </div>
   <p-toast></p-toast>
 </div>
